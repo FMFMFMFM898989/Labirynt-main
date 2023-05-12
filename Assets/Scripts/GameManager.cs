@@ -9,7 +9,17 @@ public class GameManager : MonoBehaviour
     bool endGame = false;
     bool win = false;
     [SerializeField] int timeToEnd;
+    public int points = 0;
     // Start is called before the first frame update
+    public void AddPoints(int point)
+    {
+        points += 0;
+        Debug.Log("Points: " + points);
+    }
+    public void AddTime(int t)
+    {
+        timeToEnd += t;
+    }
     void Start()
     {
         if (gameManager == null)
@@ -21,7 +31,8 @@ public class GameManager : MonoBehaviour
         {
             timeToEnd = 100;
         }
-        Debug.Log("Time: " + timeToEnd + " s");        InvokeRepeating("Stopper", 2, 1);
+        Debug.Log("Time: " + timeToEnd + " s");
+        InvokeRepeating("Stopper", 2, 1);
     }
 
     // Update is called once per frame
@@ -41,7 +52,8 @@ public class GameManager : MonoBehaviour
         if (endGame)
         {
             EndGame();
-        }
+        }
+
     }
     void PauseCheck()
     {
@@ -68,7 +80,8 @@ public class GameManager : MonoBehaviour
         Debug.Log("Resume Game");
         Time.timeScale = 1f;
         gamePaused = false;
-    }    public void EndGame()
+    }
+    public void EndGame()
     {
         CancelInvoke("Stopper");
         if (win)
